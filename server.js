@@ -1,34 +1,30 @@
-// Arquivo: server.js
 const express = require("express");
 const path = require("path");
-// Importa o controlador (Milena usa isso na sua implementação de rotas)
 const chatController = require("./controllers/chatController");
-const res = require("express/lib/response");
-
-// Usa dotenv para carregar GROQ_API_KEY do arquivo .env
 require("dotenv").config();
-
 const app = express();
 const port = 3000;
 
 // Configuração do EJS para as views
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
+
+//Permite ao servidor definir o corpo da requisição em formato JSON (API/fetch)
 app.use(express.json());
+
+//Permite ao servidor definir dados enviados por formulários HTML
 app.use(express.urlencoded({ extended: true }));
+
+// Define a pasta 'public' como a fonte de arquivos estáticos (CSS, imagens, JS)
 app.use(express.static(path.join(__dirname, "public")));
+
+// Rota principal: renderiza a view 'index' e injeta o histórico carregado  
 app.get("/", async (req, res) => {
-  const history = await chatController.loadHistory();
+  const history  = await chatController.loadHistory();
   res.render("index", {history});
 });
+// Rota de envio: processa a requisição POST e encaminha a mensagem à lógica de IA
 app.post("/chat", chatController.sendMessage);
-
-// =================================================================
-// TAREFA DA MILENA COMEÇA AQUI:
-// Ela irá adicionar todos os app.use() e as rotas app.get/post.
-// =================================================================
-
-// Inicia o servidor (mantém)
 app.listen(port, () => {
   console.log(`Servidor rodando em http://localhost:${port}`);
 });
