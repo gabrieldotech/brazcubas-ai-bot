@@ -1,28 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="/public/css/style.css">
-</head>
-<body>
-    <div id= "chat-container">
-
-    </div>
-    <h1>MiniChat IA</h1>
-    <div id="messages">
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <div id="chat-container">
+      <h1>MiniChat IA</h1>
+      <div id="messages">
         <% history.forEach(msg => { %>
         <div class="message <%= msg.role %>">
-            <strong><%= msg.role === 'user' ? 'Você:' : 'IA Groq:' %></strong>
-            <span><%= msg.content %></span>
+          <strong><%= msg.role === 'user' ? 'Você:' : 'IA Groq:' %></strong>
+          <span><%= msg.content %></span>
         </div>
         <% }); %>
-    </div>
+      </div>
 
-    <form id="chat-form">
-        <input type="text" id="message-input" placeholder="Digite sua mensagem..." required>
+      <form id="chat-form">
+        <input
+          type="text"
+          id="message-input"
+          placeholder="Digite sua mensagem..."
+          required
+        />
         <button type="submit">Enviar</button>
-    </form>
-</body>
+      </form>
+    </div>
+    <script src="/js/chatClient.js"></script>
+  </body>
 </html>
