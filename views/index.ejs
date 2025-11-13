@@ -12,7 +12,9 @@
       <div id="messages">
         <% history.forEach(msg => { %>
         <div class="message <%= msg.role %>">
-          <strong><%= msg.role === 'user' ? 'Você:' : 'Brazcubas IA:' %></strong>
+          <strong
+            ><%= msg.role === 'user' ? 'Você:' : 'Brazcubas IA:' %></strong
+          >
           <span><%= msg.content %></span>
         </div>
         <% }); %>
@@ -20,6 +22,7 @@
 
       <form id="chat-form">
         <input
+          autocomplete="off"
           type="text"
           id="message-input"
           placeholder="Digite sua mensagem..."
