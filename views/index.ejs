@@ -3,16 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Brazcubas IA - Chat</title>
+    <title>Braz Cubas IA - Chat</title>
     <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
     <div id="chat-container">
-      <h1>BrazCubas IA</h1>
+      <h1>Braz Cubas IA</h1>
       <div id="messages">
         <% history.forEach(msg => { %>
         <div class="message <%= msg.role %>">
-          <strong><%= msg.role === 'user' ? 'Você:' : 'Brazcubas IA:' %></strong>
+          <strong
+            ><%= msg.role === 'user' ? 'Você:' : 'Braz Cubas IA:' %></strong
+          >
           <span><%= msg.content %></span>
         </div>
         <% }); %>
@@ -20,6 +22,7 @@
 
       <form id="chat-form">
         <input
+          autocomplete="off"
           type="text"
           id="message-input"
           placeholder="Digite sua mensagem..."
